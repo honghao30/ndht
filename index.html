@@ -17,7 +17,16 @@
         <div class="header-inner">
           <h1>
             <a href="/" title="메인으로">
-              <img src="./assets/images/commom/logo.svg" alt="남도하이텍" />
+              <img
+                class="off"
+                src="./assets/images/commom/logo.svg"
+                alt="남도하이텍"
+              />
+              <img
+                class="on"
+                src="./assets/images/commom/logo_on.svg"
+                alt="남도하이텍"
+              />
             </a>
           </h1>
           <!-- nav -->
@@ -69,15 +78,84 @@
 
           <!-- 오른쪽 아이콘 -->
           <div class="util">
-            <button class="lang"><i class="fa fa-globe"></i></button>
-            <button class="menu"><i class="fa fa-bars"></i></button>
+            <button class="lang"></button>
+            <ul class="lang-list">
+              <li class="active">ENG</li>
+              <li>KOR</li>
+              <li>JAP</li>
+            </ul>
+            <button class="menu"></button>
           </div>
         </div>
       </header>
       <!-- //header -->
 
       <!-- allmenu -->
-      <div class="all-menu"></div>
+      <div class="all-menu">
+        <div class="menu-popup">
+          <div class="menu-popup-inner">
+            <div class="menu-left">
+              <div class="menu-info">
+                <p class="company">NAMDO HIGHTECH</p>
+                <p class="address">
+                  <span>Address</span><br />
+                  17 Jukjeon-ro 68beon-gil, Uichang-gu, Changwon-si,
+                  Gyeongsangnam-do
+                </p>
+                <p class="contact">
+                  <span>Tel</span> : +82-55-292-1600 &nbsp; | &nbsp;
+                  <span>Fax</span> : +82-55-283-1627<br />
+                  <span>E-mail</span> : sol@ndht.kr
+                </p>
+              </div>
+            </div>
+
+            <div class="menu-right">
+              <ul class="gnb">
+                <li>
+                  <p>Company</p>
+                  <ul>
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">CI</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="#">Clients</a></li>
+                    <li><a href="#">Location</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <p>Business</p>
+                  <ul>
+                    <li><a href="#">Renewable Energy</a></li>
+                    <li><a href="#">Roller Screw</a></li>
+                    <li><a href="#">Medical Devices</a></li>
+                    <li><a href="#">Power Tools</a></li>
+                    <li><a href="#">Component Machining</a></li>
+                    <li><a href="#"> Measuring Equipment</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <p>Facility</p>
+                  <ul>
+                    <li><a href="#">Capacity</a></li>
+                    <li><a href="#">Equipment</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <p>Community</p>
+                  <ul>
+                    <li><a href="#">Notice</a></li>
+                    <li><a href="#">Catalog</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- //allmenu -->
       <div class="visual">
         <div class="swiper video-swiper">
@@ -134,56 +212,68 @@
                 <div class="list">
                   <a href="#"
                     ><div class="imgbox">
-                      <img
-                        src="./assets/images/main/business01.png"
-                        alt=""
-                      /></div
-                  ></a>
+                      <img src="./assets/images/main/business01.png" alt="" />
+                    </div>
+                    <div class="txt-box">
+                      <div class="tit">Renewable Energy</div>
+                      <div class="btn-txt">Learn More</div>
+                    </div>
+                  </a>
                 </div>
                 <div class="list">
                   <a href="#"
                     ><div class="imgbox">
-                      <img
-                        src="./assets/images/main/business02.png"
-                        alt=""
-                      /></div
-                  ></a>
+                      <img src="./assets/images/main/business02.png" alt="" />
+                    </div>
+                    <div class="txt-box">
+                      <div class="tit">Roller Screw</div>
+                      <div class="btn-txt">Learn More</div>
+                    </div></a
+                  >
                 </div>
                 <div class="list">
                   <a href="#"
                     ><div class="imgbox">
-                      <img
-                        src="./assets/images/main/business03.png"
-                        alt=""
-                      /></div
-                  ></a>
+                      <img src="./assets/images/main/business03.png" alt="" />
+                    </div>
+                    <div class="txt-box">
+                      <div class="tit">Medical Devices</div>
+                      <div class="btn-txt">Learn More</div>
+                    </div>
+                  </a>
                 </div>
                 <div class="list">
                   <a href="#"
                     ><div class="imgbox">
-                      <img
-                        src="./assets/images/main/business04.png"
-                        alt=""
-                      /></div
-                  ></a>
+                      <img src="./assets/images/main/business04.png" alt="" />
+                    </div>
+                    <div class="txt-box">
+                      <div class="tit">Power Tools</div>
+                      <div class="btn-txt">Learn More</div>
+                    </div></a
+                  >
                 </div>
                 <div class="list">
                   <a href="#"
                     ><div class="imgbox">
-                      <img
-                        src="./assets/images/main/business05.png"
-                        alt=""
-                      /></div
-                  ></a>
+                      <img src="./assets/images/main/business05.png" alt="" />
+                    </div>
+                    <div class="txt-box">
+                      <div class="tit">Component Machining</div>
+                      <div class="btn-txt">Learn More</div>
+                    </div></a
+                  >
                 </div>
                 <div class="list">
                   <a href="#"
                     ><div class="imgbox">
-                      <img
-                        src="./assets/images/main/business06.png"
-                        alt=""
-                      /></div
-                  ></a>
+                      <img src="./assets/images/main/business06.png" alt="" />
+                    </div>
+                    <div class="txt-box">
+                      <div class="tit">Measuring Equipment</div>
+                      <div class="btn-txt">Learn More</div>
+                    </div></a
+                  >
                 </div>
               </div>
             </div>
@@ -233,7 +323,10 @@
               <img src="./assets/images/main/location.png" alt="" />
             </div>
             <div class="catalog">
-              <img src="./assets/images/main/catalog.png" alt="" />
+              <a href="#"
+                ><div class="imgbox">
+                  <img src="./assets/images/main/catalog.png" alt="" /></div
+              ></a>
             </div>
           </div>
         </div>
