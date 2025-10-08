@@ -1,39 +1,152 @@
 @charset "utf-8";
 
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+/* @font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
+} */
+
+body,
+html {
+  background-color: #eff0f2;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Manrope", "Pretendard", "Malgun Gothic", "맑은고딕", sans-serif;
+}
+blockquote,
+body,
+dd,
+dl,
+dt,
+fieldset,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+html,
+iframe,
+legend,
+li,
+ol,
+p,
+pre,
+textarea,
+ul {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: 400;
+}
+ul {
+  list-style: none;
+}
+button,
+input,
+select {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard", "Malgun Gothic", "맑은고딕", sans-serif;
+}
+fieldset,
+img {
+  border: 0;
+}
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+iframe {
+  border: 0;
+}
+table {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+form {
+  margin: 0;
+  padding: 0;
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.clfx:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+button {
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  font-family: "Pretendard", "Malgun Gothic", "맑은고딕", sans-serif;
+}
+a[role="button"] {
+  cursor: pointer;
 }
 
-body, html {background-color: #EFF0F2; box-sizing: border-box;margin: 0; padding: 0; border: 0; font-family: 'Pretendard', 'Malgun Gothic', '맑은고딕', sans-serif;}
-blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {margin:0;padding:0;box-sizing: border-box}
-h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight:400}
-ul {list-style:none}
-button, input, select {margin:0;box-sizing: border-box;font-family: 'Pretendard', 'Malgun Gothic', '맑은고딕', sans-serif;}
-fieldset,img{border:0}
-*, :after, :before {box-sizing:inherit}
-img, video {height:auto;max-width:100%}
-iframe {border:0}
-table{margin:0;padding:0;border:0;border-spacing:0;border-collapse: collapse;}
-td, th {padding:0}
-a {text-decoration: none;color:inherit}
-form {margin:0;padding:0;}
-fieldset {margin:0;padding:0;border:0 none;}
-legend {position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
-caption{position: absolute;width: 1px;height: 1px;clip: rect(0 0 0 0);overflow: hidden;}
-.clfx:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-button {cursor:pointer;outline:none;border:0;background-color:transparent;font-family: 'Pretendard', 'Malgun Gothic', '맑은고딕', sans-serif;}
-a[role="button"] {cursor:pointer;}
-
-.blind,.irtext {     
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+.blind,
+.irtext {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
