@@ -1,3 +1,7 @@
+.container {
+  padding: 0 0 121px 0;
+  background: #fff;
+}
 /* ==========================================================================
 	visual
    ========================================================================== */
@@ -125,76 +129,6 @@
   font-size: 24px;
   font-weight: 500;
   line-height: 1.5;
-}
-.main-cont .main_more_btn {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  margin-top: 65px;
-  width: 235px;
-  height: 50px;
-  box-sizing: border-box;
-  border-radius: 35px;
-  border: 1px solid #242526;
-  background: #fff;
-  transition: color 0.4s ease, border-color 0.4s ease;
-}
-.main-cont .main_more_btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: #d81408;
-  z-index: 0;
-  transition: width 0.4s ease;
-}
-.main-cont .main_more_btn:hover::before {
-  width: 100%;
-}
-.main-cont .main_more_btn span {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 0 5px;
-  width: 100%;
-  height: 100%;
-  padding: 0 14px 0 22px;
-  line-height: 150%;
-  color: #242526;
-  transition: color 0.3s ease;
-}
-.main-cont .main_more_btn:hover span {
-  color: #fff;
-}
-.main-cont .main_more_btn span::after {
-  content: "";
-  position: absolute;
-  top: 7px;
-  right: 9px;
-  width: 35px;
-  height: 35px;
-  background-image: url("../assets/images/icon/btn_plus.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transition: filter 0.3s ease;
-}
-.main-cont .main_more_btn:hover {
-  border-color: #d81408 !important;
-}
-.main-cont .main_more_btn:hover span::after {
-  content: "";
-  position: absolute;
-  top: 7px;
-  right: 9px;
-  width: 35px;
-  height: 35px;
-  background-image: url("../assets/images/icon/btn_plus_on.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  transition: filter 0.3s ease;
 }
 .main-cont .imgbox {
   overflow: hidden;
@@ -427,4 +361,44 @@
 .main-contact .catalog {
   overflow: hidden;
   border-radius: 20px;
+  position: relative;
+}
+.main-contact .catalog .catalog-txt {
+  position: absolute;
+  bottom: 34px;
+  right: 40px;
+  color: #fff;
+  text-align: right;
+}
+.main-contact .catalog .catalog-txt .date {
+  font-size: 14px;
+  font-weight: 600;
+}
+.main-contact .catalog .catalog-txt .txt {
+  font-size: 40px;
+  font-weight: 600;
+}
+/* ==========================================================================
+	logos
+   ========================================================================== */
+.main-logos {
+  width: 100%;
+  padding: 0 196px;
+  overflow: hidden;
+}
+.logo-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+.logo-slider .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+.logo-slider .swiper-slide {
+  width: auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-slider .swiper-slide img {
+  height: auto;
 }

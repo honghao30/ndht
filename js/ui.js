@@ -53,6 +53,30 @@
   show();
 })();
 
+//헤더높이
+function autoHeaderHeight() {
+  const header = document.querySelector(".header");
+  const headerInner = document.querySelector(".header-inner");
+
+  if (!header || !headerInner) return;
+
+  header.addEventListener("mouseenter", () => {
+    const submenus = header.querySelectorAll(".submenu-list");
+    let maxHeight = 0;
+
+    submenus.forEach((submenu) => {
+      const h = submenu.scrollHeight;
+      if (h > maxHeight) maxHeight = h;
+    });
+
+    headerInner.style.height = `${100 + maxHeight}px`;
+  });
+
+  header.addEventListener("mouseleave", () => {
+    headerInner.style.height = "100px";
+  });
+}
+
 // 드롭다운 토글
 function toggleDropdown(triggerSelector) {
   const trigger = document.querySelector(triggerSelector);
@@ -209,10 +233,27 @@ function initMenuPopup() {
   });
 }
 
+// 로고 슬라이드
+function initLogoSwiper() {
+  new Swiper(".logo-slider", {
+    slidesPerView: "auto",
+    loop: true,
+    loopAdditionalSlides: 5,
+    allowTouchMove: false,
+    speed: 5000,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+    },
+  });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   initMainSwiper();
   initMainTitle();
   initBusinessScroll();
   initSec02Title();
   initMenuPopup();
+  initLogoSwiper();
+  autoHeaderHeight();
 });
