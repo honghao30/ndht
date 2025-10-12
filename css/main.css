@@ -395,10 +395,14 @@
 }
 .logo-slider .swiper-slide {
   width: auto !important;
+  height: 72px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 45px;
 }
 .logo-slider .swiper-slide img {
-  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }

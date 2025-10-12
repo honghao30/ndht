@@ -272,35 +272,50 @@ function historyPage() {
   if (!tabs.length || !thumItems.length || !historyItems.length) return;
 
   let isScrollingByClick = false;
+  let lastScrollY = window.scrollY;
   const historySwipers = [];
 
-  // Swiper 초기화
-  thumItems.forEach((item) => {
-    const mask = item.querySelector(".his-img-mask");
-    const bullet = item.querySelector(".bullet");
+  function initSwiperFor(idx) {
+    if (historySwipers[idx]) return;
+
+    const mask = thumItems[idx].querySelector(".his-img-mask");
+    const bullet = thumItems[idx].querySelector(".bullet");
+
     if (mask) {
       const swiper = new Swiper(mask, {
         loop: true,
         slidesPerView: 1,
-        autoplay: { delay: 3000, disableOnInteraction: false },
+        speed: 600,
+        autoplay: { delay: 2500, disableOnInteraction: false },
         pagination: { el: bullet, clickable: true },
-        speed: 800,
         effect: "fade",
         fadeEffect: { crossFade: true },
       });
-      historySwipers.push(swiper);
+      historySwipers[idx] = swiper;
     }
-  });
-
-  // 왼쪽 고정
-  if (thumCont) {
-    thumCont.style.position = "sticky";
-    thumCont.style.top = "180px";
-    thumCont.style.height = "600px";
-    thumCont.style.overflow = "hidden";
   }
 
-  // 년도 애니메이션
+  function refreshSwiper(swiper) {
+    if (!swiper) return;
+    swiper.updateSize();
+    swiper.updateSlides();
+    swiper.updateProgress();
+    swiper.updateAutoHeight?.();
+    swiper.update();
+  }
+
+  function activateSwiper(index) {
+    historySwipers.forEach((sw, i) => {
+      if (!sw) return;
+      if (i === index) {
+        refreshSwiper(sw);
+        sw.autoplay?.start();
+      } else {
+        sw.autoplay?.stop();
+      }
+    });
+  }
+
   function restartCountAnimation() {
     const countNums = document.querySelectorAll(".count-num");
     countNums.forEach((count) => {
@@ -310,60 +325,125 @@ function historyPage() {
     });
   }
 
+  if (thumCont) {
+    thumCont.style.position = "sticky";
+    thumCont.style.top = "180px";
+    thumCont.style.height = "800px";
+    thumCont.style.overflow = "hidden";
+  }
+
   tabs.forEach((tab, i) => {
     tab.addEventListener("click", (e) => {
       e.preventDefault();
       isScrollingByClick = true;
+
       tabs.forEach((t) => t.classList.remove("active"));
       tab.classList.add("active");
+
       thumItems.forEach((thum, idx) => {
         thum.classList.toggle("act", idx === i);
       });
 
-      historySwipers[i]?.update();
-      historySwipers[i]?.slideToLoop(0);
-
+      initSwiperFor(i);
+      activateSwiper(i);
       restartCountAnimation();
 
       const target = historyItems[i];
       if (target) {
-        const headerOffset = 120;
-        const rect = target.getBoundingClientRect();
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        const top = rect.top + scrollTop - headerOffset;
-
-        window.scrollTo({ top, behavior: "smooth" });
+        const offset = 120;
+        const y = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
 
-      setTimeout(() => (isScrollingByClick = false), 800);
+      setTimeout(() => (isScrollingByClick = false), 1200);
     });
   });
 
   // 스크롤 감지
   const observer = new IntersectionObserver(
     (entries) => {
+      const scrollingDown = window.scrollY > lastScrollY;
+      lastScrollY = window.scrollY;
+
       if (isScrollingByClick) return;
 
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
         const idx = Array.from(historyItems).indexOf(entry.target);
 
-        tabs.forEach((t) => t.classList.remove("active"));
-        tabs[idx]?.classList.add("active");
+        if (
+          (scrollingDown && entry.isIntersecting) ||
+          (!scrollingDown && entry.boundingClientRect.top > 0)
+        ) {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tabs[idx]?.classList.add("active");
 
-        thumItems.forEach((thum, j) => {
-          thum.classList.toggle("act", j === idx);
-        });
+          thumItems.forEach((thum, j) => {
+            thum.classList.toggle("act", j === idx);
+          });
 
-        historySwipers[idx]?.update();
-
-        restartCountAnimation();
+          initSwiperFor(idx);
+          activateSwiper(idx);
+          restartCountAnimation();
+        }
       });
     },
-    { threshold: 0.4 }
+    { threshold: 0.3 }
   );
+
   historyItems.forEach((item) => observer.observe(item));
+
+  initSwiperFor(0);
+  activateSwiper(0);
+
+  tabs.forEach((t) => t.classList.remove("active"));
+  tabs[0]?.classList.add("active");
+
+  thumItems.forEach((thum, j) => {
+    thum.classList.toggle("act", j === 0);
+  });
+
+  restartCountAnimation();
+
+  setTimeout(() => {
+    historyItems.forEach((item) => observer.observe(item));
+  }, 400);
+}
+
+// component_machining
+function componentMachiningTabs() {
+  const tabButtons = document.querySelectorAll(
+    ".component-machining-tab-box li"
+  );
+  const tabContents = document.querySelectorAll(".tab-cont");
+
+  if (!tabButtons.length || !tabContents.length) return;
+
+  tabButtons.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      tab.classList.add("active");
+      tabContents.forEach((content, i) => {
+        content.classList.toggle("active", i === index);
+      });
+    });
+  });
+}
+
+// capacity
+function capacityTabs() {
+  const tabs = document.querySelectorAll(".capacity-tab-box li");
+  const contents = document.querySelectorAll(".capacity-cont");
+
+  if (!tabs.length || !contents.length) return;
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      contents.forEach((cont) => cont.classList.remove("active"));
+      contents[idx].classList.add("active");
+    });
+  });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -376,4 +456,6 @@ window.addEventListener("DOMContentLoaded", () => {
   autoHeaderHeight();
   scrollTop();
   historyPage();
+  componentMachiningTabs();
+  capacityTabs();
 });
