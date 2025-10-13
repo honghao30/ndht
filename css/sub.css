@@ -20,7 +20,22 @@
 }
 .sub-visual {
   position: relative;
+  mix-blend-mode: multiply;
+  animation-name: ani-zoom-out;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
 }
+@keyframes ani-zoom-out {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .sub-visual .title-box {
   width: 100%;
   position: absolute;
