@@ -252,6 +252,30 @@
   opacity: 1;
   visibility: visible;
 }
+@media all and (max-width: 1400px) {
+  .main-business .business-list .list {
+    width: 34%;
+    margin-top: 3.8%;
+  }
+  .main-business .business-list .list:nth-child(2n-1) {
+    margin-top: -9.8%;
+  }
+  .main-business .business-list .list:nth-child(2) {
+    margin-top: 14%;
+  }
+  .main-business .business-list .list:first-child {
+    margin-top: 0;
+  }
+  .overlay .main-tit {
+    font-size: 58px;
+  }
+}
+@media all and (max-width: 960px) {
+}
+@media all and (max-width: 768px) {
+}
+@media all and (max-width: 640px) {
+}
 /* ==========================================================================
 	main-intro
    ========================================================================== */
@@ -341,6 +365,33 @@
   left: 155px;
   right: unset;
 }
+@media all and (max-width: 1400px) {
+  .main-intro .btn-area {
+    padding: 90px 6% 0;
+  }
+  .main-intro .btn-box {
+    height: 310px;
+  }
+  .main-intro .txt-box {
+    left: 77px;
+  }
+  .main-intro .btn-box a {
+    right: 77px;
+  }
+  .main-intro .btn-box.second .txt-box {
+    left: unset;
+    right: 77px;
+  }
+  .main-intro .btn-box.second a {
+    left: 77px;
+  }
+}
+@media all and (max-width: 960px) {
+}
+@media all and (max-width: 768px) {
+}
+@media all and (max-width: 640px) {
+}
 /* ==========================================================================
 	contact
    ========================================================================== */
@@ -348,16 +399,18 @@
   padding: 0 10% 120px;
   margin-top: 173px;
 }
-.main-contact .contact-box {
-  display: flex;
-  gap: 20px;
-  align-items: end;
-}
-.main-contact .contact-box .txt-box {
+.main-contact .txt-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 9px;
+  width: calc((100% - 20px) / 2);
+}
+.main-contact .contact-box {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+  margin-top: -77px;
 }
 .main-contact .catalog {
   overflow: hidden;
@@ -378,6 +431,26 @@
 .main-contact .catalog .catalog-txt .txt {
   font-size: 40px;
   font-weight: 600;
+}
+@media all and (max-width: 1400px) {
+  .main-contact {
+    padding: 0 6% 120px;
+  }
+  .main-contact .contact-box {
+    margin-top: 0;
+  }
+  .main-contact .contact-box .location img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+@media all and (max-width: 960px) {
+}
+@media all and (max-width: 768px) {
+}
+@media all and (max-width: 640px) {
 }
 /* ==========================================================================
 	logos

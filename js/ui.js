@@ -145,7 +145,7 @@ function businessScroll() {
 
   const listHeight = list.scrollHeight;
   const rightHeight = right.clientHeight;
-  const extraSpace = Math.max(0, rightHeight * 0.3);
+  const extraSpace = Math.max(0, rightHeight * 0.2);
   right.style.paddingBottom = `${extraSpace}px`;
   const scrollDistance = listHeight - rightHeight + extraSpace;
   ScrollTrigger.create({
