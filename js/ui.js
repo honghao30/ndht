@@ -143,6 +143,15 @@ function businessScroll() {
   const list = section.querySelector(".business-list");
   if (!list || !right) return;
 
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+  if (window.innerWidth <= 960) {
+    console.log("960이하일때");
+    gsap.set(list, { clearProps: "all" }); // transform 초기화
+    right.style.removeProperty("padding-bottom");
+    return;
+  }
+
   const listHeight = list.scrollHeight;
   const rightHeight = right.clientHeight;
   const extraSpace = Math.max(0, rightHeight * 0.2);
@@ -164,6 +173,10 @@ function businessScroll() {
     },
   });
 }
+
+window.addEventListener("resize", () => {
+  businessScroll();
+});
 
 // sec02
 function sec02Title() {
@@ -272,43 +285,50 @@ function historyPage() {
   if (!tabs.length || !thumItems.length || !historyItems.length) return;
 
   let isScrollingByClick = false;
-  let lastScrollY = window.scrollY;
   const historySwipers = [];
 
-  function initSwiperFor(idx) {
+  function initSwiper(idx) {
     if (historySwipers[idx]) return;
 
     const mask = thumItems[idx].querySelector(".his-img-mask");
     const bullet = thumItems[idx].querySelector(".bullet");
+    if (!mask) return;
 
-    if (mask) {
-      const swiper = new Swiper(mask, {
-        loop: true,
-        slidesPerView: 1,
-        speed: 600,
-        autoplay: { delay: 2500, disableOnInteraction: false },
-        pagination: { el: bullet, clickable: true },
-        effect: "fade",
-        fadeEffect: { crossFade: true },
-      });
-      historySwipers[idx] = swiper;
-    }
-  }
+    mask.style.opacity = "0";
+    mask.style.transition = "opacity 0.4s ease";
 
-  function refreshSwiper(swiper) {
-    if (!swiper) return;
-    swiper.updateSize();
-    swiper.updateSlides();
-    swiper.updateProgress();
-    swiper.updateAutoHeight?.();
-    swiper.update();
+    const swiper = new Swiper(mask, {
+      loop: true,
+      slidesPerView: 1,
+      speed: 600,
+      autoplay: { delay: 2500, disableOnInteraction: false },
+      pagination: { el: bullet, clickable: true },
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      preloadImages: true,
+      lazy: false,
+      observer: true,
+      observeParents: true,
+      on: {
+        init() {
+          requestAnimationFrame(() => {
+            mask.style.opacity = "1";
+          });
+        },
+        imagesReady() {
+          swiper.update();
+        },
+      },
+    });
+
+    historySwipers[idx] = swiper;
   }
 
   function activateSwiper(index) {
     historySwipers.forEach((sw, i) => {
       if (!sw) return;
       if (i === index) {
-        refreshSwiper(sw);
+        sw.update();
         sw.autoplay?.start();
       } else {
         sw.autoplay?.stop();
@@ -317,19 +337,31 @@ function historyPage() {
   }
 
   function restartCountAnimation() {
-    const countNums = document.querySelectorAll(".count-num");
-    countNums.forEach((count) => {
+    document.querySelectorAll(".count-num").forEach((count) => {
       count.classList.remove("play");
       void count.offsetWidth;
       count.classList.add("play");
     });
   }
 
+  function activateIndex(idx) {
+    tabs.forEach((t) => t.classList.remove("active"));
+    thumItems.forEach((thum) => thum.classList.remove("act"));
+    tabs[idx]?.classList.add("active");
+    thumItems[idx]?.classList.add("act");
+
+    initSwiper(idx);
+    activateSwiper(idx);
+    restartCountAnimation();
+  }
+
   if (thumCont) {
-    thumCont.style.position = "sticky";
-    thumCont.style.top = "180px";
-    thumCont.style.height = "800px";
-    thumCont.style.overflow = "hidden";
+    Object.assign(thumCont.style, {
+      position: "sticky",
+      top: "180px",
+      height: "800px",
+      overflow: "hidden",
+    });
   }
 
   tabs.forEach((tab, i) => {
@@ -337,16 +369,7 @@ function historyPage() {
       e.preventDefault();
       isScrollingByClick = true;
 
-      tabs.forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-
-      thumItems.forEach((thum, idx) => {
-        thum.classList.toggle("act", idx === i);
-      });
-
-      initSwiperFor(i);
-      activateSwiper(i);
-      restartCountAnimation();
+      activateIndex(i);
 
       const target = historyItems[i];
       if (target) {
@@ -362,51 +385,35 @@ function historyPage() {
   // 스크롤 감지
   const observer = new IntersectionObserver(
     (entries) => {
-      const scrollingDown = window.scrollY > lastScrollY;
-      lastScrollY = window.scrollY;
-
       if (isScrollingByClick) return;
 
-      entries.forEach((entry) => {
-        const idx = Array.from(historyItems).indexOf(entry.target);
+      let visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-        if (
-          (scrollingDown && entry.isIntersecting) ||
-          (!scrollingDown && entry.boundingClientRect.top > 0)
-        ) {
-          tabs.forEach((t) => t.classList.remove("active"));
-          tabs[idx]?.classList.add("active");
-
-          thumItems.forEach((thum, j) => {
-            thum.classList.toggle("act", j === idx);
-          });
-
-          initSwiperFor(idx);
-          activateSwiper(idx);
-          restartCountAnimation();
-        }
-      });
+      if (visible) {
+        const idx = Array.from(historyItems).indexOf(visible.target);
+        activateIndex(idx);
+      }
     },
-    { threshold: 0.3 }
+    {
+      rootMargin: "0px 0px -50% 0px",
+      threshold: [0.25, 0.5, 0.75],
+    }
   );
 
   historyItems.forEach((item) => observer.observe(item));
 
-  initSwiperFor(0);
-  activateSwiper(0);
+  window.addEventListener("load", () => {
+    const visible = Array.from(historyItems).find((item) => {
+      const rect = item.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.6 && rect.bottom > 0;
+    });
 
-  tabs.forEach((t) => t.classList.remove("active"));
-  tabs[0]?.classList.add("active");
+    const idx = visible ? Array.from(historyItems).indexOf(visible) : 0;
 
-  thumItems.forEach((thum, j) => {
-    thum.classList.toggle("act", j === 0);
+    activateIndex(idx);
   });
-
-  restartCountAnimation();
-
-  setTimeout(() => {
-    historyItems.forEach((item) => observer.observe(item));
-  }, 400);
 }
 
 // component_machining

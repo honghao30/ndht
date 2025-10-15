@@ -2,6 +2,11 @@
   padding: 0 0 121px 0;
   background: #fff;
 }
+@media all and (max-width: 960px) {
+  .container {
+    padding: 0 0 10% 0;
+  }
+}
 /* ==========================================================================
 	visual
    ========================================================================== */
@@ -156,6 +161,60 @@
 .main-cont a:hover .imgbox::after {
   background: rgba(0, 0, 0, 0.4);
 }
+@media all and (max-width: 1400px) {
+  .overlay .main-tit {
+    font-size: 58px;
+  }
+}
+@media all and (max-width: 960px) {
+  .overlay .main-tit {
+    line-height: 1.3;
+  }
+  .video-swiper .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 5%;
+  }
+  .video-swiper .swiper-pagination-bullet-active {
+    width: 80px;
+  }
+  .main-cont h2 {
+    font-size: 56px;
+  }
+  .main-cont .main-desc {
+    margin-top: 2%;
+    font-size: 20px;
+  }
+  .visual .scroll {
+    left: 2%;
+  }
+}
+@media all and (max-width: 768px) {
+  .overlay .main-tit {
+    font-size: 50px;
+  }
+  .overlay .main-txt {
+    font-size: 16px;
+  }
+}
+@media all and (max-width: 640px) {
+  .main-cont h2 {
+    font-size: 48px;
+  }
+  .visual .overlay {
+    padding: 0 6%;
+  }
+  .visual .overlay .main-tit {
+    font-size: 36px;
+  }
+  .visual .overlay .main-txt {
+    margin-top: 3%;
+  }
+  .visual .scroll {
+    left: -16%;
+  }
+  .video-swiper .swiper-pagination-bullet-active {
+    width: 60px;
+  }
+}
 /* ==========================================================================
 	business
    ========================================================================== */
@@ -253,6 +312,9 @@
   visibility: visible;
 }
 @media all and (max-width: 1400px) {
+  .main-business .right {
+    height: 96vh;
+  }
   .main-business .business-list .list {
     width: 34%;
     margin-top: 3.8%;
@@ -266,11 +328,25 @@
   .main-business .business-list .list:first-child {
     margin-top: 0;
   }
-  .overlay .main-tit {
-    font-size: 58px;
-  }
 }
 @media all and (max-width: 960px) {
+  .main-business {
+    display: block;
+    height: auto;
+  }
+  .main-business .left,
+  .main-business .right {
+    width: 100%;
+    position: static;
+    height: auto;
+    padding: 6% 6% 0 6%;
+  }
+  .main-business .business-list .list {
+    width: 47%;
+  }
+  .main-business .business-list .list:nth-child(2n) {
+    margin-left: 4%;
+  }
 }
 @media all and (max-width: 768px) {
 }
@@ -286,17 +362,17 @@
   position: static;
   transform: none;
 }
-.main-intro .overlay p {
+.main-intro .overlay {
+  text-align-last: left;
+  padding-left: 192px;
+}
+.main-intro .overlay .main-tit {
   color: #c7c7c7;
   background-image: none;
   -webkit-background-clip: initial;
   background-clip: initial;
-}
-.main-intro .overlay {
-  text-align-last: left;
-  padding-left: 192px;
   font-size: 64px;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 .main-intro .btn-area {
   padding: 165px 10% 0;
@@ -366,8 +442,14 @@
   right: unset;
 }
 @media all and (max-width: 1400px) {
+  .main-intro .overlay {
+    padding-left: 10%;
+  }
+  .main-intro .overlay .main-tit {
+    font-size: 52px;
+  }
   .main-intro .btn-area {
-    padding: 90px 6% 0;
+    padding: 90px 10% 0;
   }
   .main-intro .btn-box {
     height: 310px;
@@ -387,10 +469,61 @@
   }
 }
 @media all and (max-width: 960px) {
+  .main-intro .overlay {
+    padding: 6% 6% 0;
+  }
+  .main-intro .overlay .main-tit {
+    font-size: 46px;
+    text-align: left;
+  }
+  .main-intro .btn-area {
+    padding: 6% 6% 0;
+  }
+  .main-intro .btn-box {
+    height: 250px;
+    padding: 6%;
+  }
+  .main-intro .txt-box {
+    top: 12%;
+    left: 6%;
+  }
+  .main-intro .btn-box a {
+    right: 6%;
+    bottom: 12%;
+  }
+  .main-intro .btn-box.second .txt-box {
+    left: unset;
+    right: 6%;
+  }
+  .main-intro .btn-box.second .txt-box {
+    top: 12%;
+  }
+  .main-intro .btn-box.second a {
+    left: 6%;
+  }
+  .main-intro .txt-box .desc {
+    font-size: 14px;
+  }
+  .main-intro .txt-box .txt {
+    font-size: 30px;
+  }
 }
 @media all and (max-width: 768px) {
+  .main-intro .overlay .main-tit {
+    font-size: 38px;
+  }
 }
 @media all and (max-width: 640px) {
+  .main-intro .btn-box {
+    height: 210px;
+  }
+  .main-intro .txt-box .txt {
+    font-size: 24px;
+  }
+  .main-intro .btn-box a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 /* ==========================================================================
 	contact
@@ -406,10 +539,13 @@
   margin-bottom: 9px;
   width: calc((100% - 20px) / 2);
 }
+.main-contact .main-more-btn {
+  width: 200px;
+}
 .main-contact .contact-box {
   display: flex;
   gap: 20px;
-  align-items: end;
+  align-items: baseline;
   margin-top: -77px;
 }
 .main-contact .catalog {
@@ -436,9 +572,6 @@
   .main-contact {
     padding: 0 6% 120px;
   }
-  .main-contact .contact-box {
-    margin-top: 0;
-  }
   .main-contact .contact-box .location img {
     width: 100%;
     height: 100%;
@@ -447,10 +580,23 @@
   }
 }
 @media all and (max-width: 960px) {
+  .main-contact {
+    margin-top: 0;
+    padding: 6% 6% 10%;
+  }
+  .main-contact .txt-box {
+    width: 100%;
+  }
+  .main-contact .contact-box {
+    margin-top: 0;
+  }
 }
 @media all and (max-width: 768px) {
 }
 @media all and (max-width: 640px) {
+  .main-contact .txt-box {
+    display: block;
+  }
 }
 /* ==========================================================================
 	logos
@@ -479,4 +625,15 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+@media all and (max-width: 1400px) {
+  .main-logos {
+    padding: 0 6%;
+  }
+}
+@media all and (max-width: 960px) {
+}
+@media all and (max-width: 768px) {
+}
+@media all and (max-width: 640px) {
 }

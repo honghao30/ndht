@@ -148,8 +148,8 @@
   justify-content: space-between;
 }
 .history-inner .thum-cont {
-  /* width: 53%; */
-  width: 800px;
+  width: 56%;
+  max-width: 800px;
   overflow: hidden;
   position: absolute;
   top: 180px;
@@ -256,13 +256,14 @@
   }
 }
 .history-inner .txt-cont {
-  width: 30%;
+  width: 38%;
+  max-width: 460px;
 }
 .history-inner .txt-cont .history-item {
   margin-bottom: 60px;
 }
 .history-inner .txt-cont .history-item + .history-item {
-  margin-top: 200px;
+  padding-top: 200px;
 }
 .history-inner .txt-cont .history-item dl {
   display: flex;
@@ -293,6 +294,14 @@
 }
 .history-inner .txt-cont .history-item dd .t1 + .t1 {
   margin-top: 15px;
+}
+@media all and (max-width: 1400px) {
+}
+@media all and (max-width: 960px) {
+}
+@media all and (max-width: 768px) {
+}
+@media all and (max-width: 640px) {
 }
 /* ==========================================================================
 	clients

@@ -425,6 +425,17 @@
   background-size: contain;
   transition: filter 0.3s ease;
 }
+@media all and (max-width: 960px) {
+  .main-more-btn {
+    margin-top: 4%;
+  }
+}
+@media all and (max-width: 640px) {
+  .main-more-btn {
+    font-size: 14px;
+    width: 190px;
+  }
+}
 /* ==========================================================================
 	footer
    ========================================================================== */
@@ -476,6 +487,18 @@
   text-align: right;
   font-size: 12px;
 }
+@media all and (max-width: 1400px) {
+  .footer-inner {
+    padding: 0 6%;
+  }
+}
+@media all and (max-width: 960px) {
+}
+@media all and (max-width: 768px) {
+}
+@media all and (max-width: 640px) {
+}
+
 /* ==========================================================================
 	btn-top
    ========================================================================== */
@@ -488,6 +511,7 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  padding: 0;
 }
 .btn-top i {
   display: block;
@@ -497,6 +521,32 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+@media all and (max-width: 1400px) {
+  .btn-top {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media all and (max-width: 960px) {
+  .btn-top {
+    width: 65px;
+    height: 65px;
+  }
+}
+@media all and (max-width: 768px) {
+  .btn-top {
+    width: 60px;
+    height: 60px;
+  }
+}
+@media all and (max-width: 640px) {
+  .btn-top {
+    width: 50px;
+    height: 50px;
+    right: 5%;
+    bottom: 2%;
+  }
 }
 /* ==========================================================================
 	공통
