@@ -5,6 +5,7 @@
   color: #fff;
   font-weight: 600;
   font-size: 16px;
+  flex-wrap: wrap;
 }
 .breadcrumb a {
   position: relative;
@@ -76,6 +77,7 @@
   border-radius: 80px 80px 0 0;
 }
 .sub-visual {
+  width: 100%;
   padding-top: 100px;
   height: 770px;
   background-size: cover;
@@ -112,6 +114,13 @@
   }
 }
 @media all and (max-width: 960px) {
+  .sub-tit {
+    font-size: 60px;
+  }
+  .sub-txt {
+    font-size: 22px;
+    line-height: 2;
+  }
   .sub-visual .title-box {
     padding: 0 10%;
   }
@@ -126,8 +135,21 @@
   }
 }
 @media all and (max-width: 768px) {
+  .sub-visual .title-box {
+    padding: 0 6%;
+  }
+  .sub-tit {
+    font-size: 50px;
+  }
+  .sub-txt {
+    font-size: 18px;
+    line-height: 1.5;
+  }
 }
 @media all and (max-width: 640px) {
+  .sub-tit {
+    font-size: 42px;
+  }
 }
 /* ==========================================================================
 	history
@@ -142,6 +164,9 @@
   z-index: 20;
   background: #fff;
   border-radius: 80px 80px 0 0;
+}
+.his-menu.sticky {
+  border-radius: 0;
 }
 .his-menu .his-tab-box {
   width: 100%;
@@ -288,12 +313,6 @@
   width: 38%;
   max-width: 460px;
 }
-.history-inner .txt-cont .history-item {
-  margin-bottom: 200px;
-}
-.history-inner .txt-cont .history-item:last-child {
-  margin-bottom: 0;
-}
 .history-inner .txt-cont .history-item dl {
   display: flex;
   align-items: flex-start;
@@ -351,8 +370,18 @@
   .his-menu.sticky .his-tab-box {
     padding: 0 6%;
   }
+  .his-menu .his-tab-box ul li {
+    padding: 20px 0;
+  }
   .history-inner {
     padding: 60px 6%;
+    display: block;
+  }
+  .history-inner .thum-cont {
+    background-color: #fff;
+    width: 100%;
+    z-index: 1;
+    padding-top: 4%;
   }
   .history-inner .thum-cont .thum-item .year {
     font-size: 52px;
@@ -365,10 +394,15 @@
   }
   .history-inner .thum-cont .thum-item .tit {
     font-size: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .history-inner .txt-cont .history-item {
-    margin-bottom: 100px;
+    scroll-margin-top: 84px;
+  }
+  .history-inner .txt-cont {
+    max-width: 100%;
+    width: 100%;
+    padding-top: 8px;
   }
   .history-inner .txt-cont .history-item dl {
     gap: 20px;
@@ -394,16 +428,6 @@
   .history-inner {
     background-color: #fff;
     padding: 30px 6%;
-    display: block;
-  }
-  .history-inner .thum-cont {
-    background-color: #fff;
-    width: 100%;
-    z-index: 1;
-    padding-top: 12%;
-  }
-  .history-inner .txt-cont {
-    width: 100%;
   }
 }
 /* ==========================================================================
@@ -604,22 +628,62 @@
 }
 @media all and (max-width: 768px) {
   .component-machining-menu {
-    padding-top: 20px;
+    padding: 20px 6% 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* scrollbar-width: none; */
   }
+  /* .component-machining-menu::-webkit-scrollbar {
+    display: none;
+  } */
   .component-machining-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
     font-size: 20px;
   }
   .component-machining-tab-box {
-    padding: 0 6%;
+    display: flex;
+    gap: 20px;
+    min-width: max-content;
+    padding: 0;
   }
   .component-machining-inner .tab-inner {
-    padding: 100px 6% 0;
+    padding: 40px 6% 0;
   }
   .component-machining-inner .tab-img-wrap .img-list .img-item {
     font-size: 20px;
   }
+  .component-machining-tab-box li {
+    width: auto;
+  }
 }
 @media all and (max-width: 640px) {
+  .component-machining-inner .tab-inner .txt-box {
+    display: block;
+  }
+  .component-machining-inner .tab-inner .txt-box .tab-title {
+    width: 100%;
+    font-size: 28px;
+    padding: 24px 24px 0;
+  }
+  .component-machining-inner .tab-inner .txt-box .tab-desc {
+    padding: 40px 24px;
+  }
+  .component-machining-inner .tab-inner .txt-box .tab-desc::before {
+    display: none;
+  }
+  .component-machining-inner .tab-img-wrap {
+    margin-top: 56px;
+  }
+  .component-machining-inner .tab-img-wrap .img-list {
+    gap: 40px 14px;
+  }
+  .component-machining-inner .tab-img-wrap .img-list .img-item {
+    width: calc((100% - 14px) / 2);
+  }
+  .component-machining-inner .tab-img-wrap .img-list .img-item .img-txt {
+    font-size: 16px;
+  }
 }
 /* ==========================================================================
 	capacity

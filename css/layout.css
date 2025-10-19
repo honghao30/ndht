@@ -12,21 +12,20 @@
   transition: transform 0.28s ease, background 0.28s ease;
   will-change: transform;
   background: transparent;
+  box-sizing: border-box;
 }
 .header--hidden {
   transform: translateY(-100%);
 }
 .header-inner {
+  width: 100%;
   padding: 0 5%;
   position: relative;
   transition: height 0.4s ease, background 0.4s ease;
+  box-sizing: border-box;
 }
 .header.header--hover .header-inner {
   background: #fff;
-}
-.header .header-inner.no-hover {
-  background: transparent;
-  height: 100px;
 }
 .header h1 .on {
   display: none;
@@ -37,12 +36,12 @@
 .header.header--hover h1 .off {
   display: none;
 }
-.header.header--hover .header-inner.no-hover h1 .on {
+/* .header.header--hover .header-inner.no-hover h1 .on {
   display: none;
 }
 .header.header--hover .header-inner.no-hover h1 .off {
   display: block;
-}
+} */
 .header-inner::after {
   display: block;
   content: "";
@@ -147,16 +146,18 @@
   transition: all 0.4s;
 }
 .util .lang {
-  background: url("../assets/images/icon/ico_lang.svg") no-repeat;
+  background: url("../assets/images/icon/ico_lang.svg") no-repeat center / 100%;
 }
 .header.header--hover .util .lang {
-  background: url("../assets/images/icon/ico_lang_on.svg") no-repeat;
+  background: url("../assets/images/icon/ico_lang_on.svg") no-repeat center /
+    100%;
 }
 .util .menu {
-  background: url("../assets/images/icon/ico_menu.svg") no-repeat;
+  background: url("../assets/images/icon/ico_menu.svg") no-repeat center / 100%;
 }
 .header.header--hover .util .menu {
-  background: url("../assets/images/icon/ico_menu_on.svg") no-repeat;
+  background: url("../assets/images/icon/ico_menu_on.svg") no-repeat center /
+    100%;
 }
 .lang-list {
   position: absolute;
@@ -327,16 +328,21 @@
   display: none;
 }
 .util.active .lang {
-  background: url("../assets/images/icon/ico_lang_on.svg") no-repeat;
+  background: url("../assets/images/icon/ico_lang_on.svg") no-repeat center /
+    100%;
 }
 .util.active .menu,
 .header:hover .header-inner.no-hover .util.active .menu {
-  background: url("../assets/images/icon/ico_menu_close.svg") no-repeat;
+  background: url("../assets/images/icon/ico_menu_close.svg") no-repeat center /
+    100%;
 }
 /* 961~1400 */
 @media all and (max-width: 1400px) {
   .nav {
     display: none;
+  }
+  .header-inner {
+    height: 100px;
   }
 }
 
@@ -346,6 +352,25 @@
 
 /* 641~768 */
 @media all and (max-width: 768px) {
+  .header-inner {
+    padding: 0;
+  }
+  .header-inner > h1 {
+    width: 101px;
+    left: 25px;
+  }
+  .util {
+    right: 0;
+    transform: translateX(-50%);
+  }
+  .util button {
+    width: 21px;
+    height: 21px;
+  }
+  .lang-list {
+    top: 30px;
+    right: 10px;
+  }
   .all-menu {
     width: 60%;
   }
@@ -354,14 +379,12 @@
     justify-content: unset;
     left: unset;
     width: 60%;
-    right: -100%;
+    right: 0;
     opacity: 0;
     visibility: hidden;
     transition: right 0.6s ease, opacity 0.4s ease;
   }
   .menu-popup.active {
-    transform: none;
-    right: 0;
     opacity: 1;
     visibility: visible;
   }
@@ -437,6 +460,17 @@
 
 /* 320~640 */
 @media all and (max-width: 640px) {
+  .menu-right .gnb li p {
+    font-size: 20px;
+    padding: 0 20px 15px;
+  }
+  .menu-right .gnb li p::after {
+    top: 10px;
+    right: 20px;
+    width: 24px;
+    height: 15px;
+    background-size: 100%;
+  }
 }
 /* ==========================================================================
 	btn

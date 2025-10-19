@@ -1,5 +1,5 @@
 // 헤더
-(() => {
+function headerScrollControl() {
   const header = document.querySelector(".header");
   const popup = document.querySelector(".menu-popup");
   if (!header) return;
@@ -10,18 +10,39 @@
   const show = () => header.classList.remove("header--hidden");
   const hide = () => header.classList.add("header--hidden");
 
-  header.addEventListener("mouseenter", () => {
-    if (popup && popup.classList.contains("active")) return;
+  const bindHoverEvents = () => {
+    header.removeEventListener("mouseenter", onEnter);
+    header.removeEventListener("mouseleave", onLeave);
+
+    if (window.innerWidth > 768) {
+      header.addEventListener("mouseenter", onEnter);
+      header.addEventListener("mouseleave", onLeave);
+    } else {
+      header.classList.remove("header--hover");
+    }
+  };
+
+  const onEnter = () => {
+    if (popup && popup.classList.contains("active")) {
+      header.classList.remove("header--hover");
+      return;
+    }
     header.classList.add("header--hover");
     show();
-  });
-  header.addEventListener("mouseleave", () => {
-    if (popup && popup.classList.contains("active")) return;
+  };
+
+  const onLeave = () => {
+    if (popup && popup.classList.contains("active")) {
+      header.classList.remove("header--hover");
+      return;
+    }
     header.classList.remove("header--hover");
-  });
+  };
+
   const onScroll = () => {
     const y = window.scrollY;
     const dy = y - lastY;
+
     header.classList.toggle("active", y > 100);
 
     if (y <= 0) {
@@ -50,33 +71,101 @@
     { passive: true }
   );
 
+  window.addEventListener("resize", bindHoverEvents);
+
+  bindHoverEvents();
   show();
-})();
+
+  const observer = new MutationObserver(() => {
+    if (popup.classList.contains("active")) {
+      header.classList.remove("header--hover");
+    }
+  });
+  observer.observe(popup, { attributes: true, attributeFilter: ["class"] });
+}
+
+function allMenuToggle() {
+  const menuTitles = document.querySelectorAll(".menu-right .gnb > li > p");
+  if (!menuTitles.length) return;
+
+  function bindToggle() {
+    menuTitles.forEach((title) => {
+      title.addEventListener("click", toggleMenu);
+    });
+  }
+
+  function unbindToggle() {
+    menuTitles.forEach((title) => {
+      title.removeEventListener("click", toggleMenu);
+    });
+  }
+
+  function toggleMenu(e) {
+    const parentLi = e.currentTarget.closest("li");
+    const subMenu = parentLi.querySelector("ul");
+
+    const isActive = parentLi.classList.contains("active");
+
+    document.querySelectorAll(".menu-right .gnb > li").forEach((li) => {
+      li.classList.remove("active");
+      li.querySelector("ul")?.classList.remove("active");
+    });
+
+    if (!isActive) {
+      parentLi.classList.add("active");
+      subMenu?.classList.add("active");
+    }
+  }
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      bindToggle();
+    } else {
+      unbindToggle();
+      document
+        .querySelectorAll(".menu-right .gnb > li")
+        .forEach((li) => li.classList.remove("active"));
+      document
+        .querySelectorAll(".menu-right .gnb ul")
+        .forEach((ul) => ul.classList.remove("active"));
+    }
+  }
+
+  window.addEventListener("resize", handleResize);
+  handleResize();
+}
 
 function autoHeaderHeight() {
   const header = document.querySelector(".header");
   const headerInner = document.querySelector(".header-inner");
-
   if (!header || !headerInner) return;
 
   let timer;
-  header.addEventListener("mouseenter", () => {
-    clearTimeout(timer);
-    const submenus = header.querySelectorAll(".submenu-list");
-    let maxHeight = 0;
 
-    submenus.forEach((submenu) => {
-      const h = submenu.scrollHeight;
-      if (h > maxHeight) maxHeight = h;
-    });
-    headerInner.style.transition = "height 0.3s ease";
-    headerInner.style.height = `${100 + maxHeight}px`;
+  header.addEventListener("mouseenter", () => {
+    if (window.innerWidth <= 768) return;
+
+    clearTimeout(timer);
+    header.classList.add("header--hover");
+
+    setTimeout(() => {
+      const submenus = header.querySelectorAll(".submenu-list");
+      let maxHeight = 0;
+
+      submenus.forEach((submenu) => {
+        const h = submenu.scrollHeight;
+        if (h > maxHeight) maxHeight = h;
+      });
+
+      headerInner.style.transition = "height 0.3s ease";
+      headerInner.style.height = `${100 + maxHeight}px`;
+    }, 50);
   });
 
   header.addEventListener("mouseleave", () => {
-    // transition 중복 방지
+    if (window.innerWidth <= 768) return;
     clearTimeout(timer);
     timer = setTimeout(() => {
+      header.classList.remove("header--hover");
       headerInner.style.transition = "height 0.3s ease";
       headerInner.style.height = "100px";
     }, 100);
@@ -146,7 +235,6 @@ function businessScroll() {
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
   if (window.innerWidth <= 960) {
-    console.log("960이하일때");
     gsap.set(list, { clearProps: "all" }); // transform 초기화
     right.style.removeProperty("padding-bottom");
     return;
@@ -281,60 +369,25 @@ function historyPage() {
   const thumItems = document.querySelectorAll(".thum-list .thum-item");
   const historyItems = document.querySelectorAll(".history-list .history-item");
   const thumCont = document.querySelector(".thum-cont");
-
   if (!tabs.length || !thumItems.length || !historyItems.length) return;
 
   let isScrollingByClick = false;
   const historySwipers = [];
+  let lastIndex = 0;
 
-  function initSwiper(idx) {
-    if (historySwipers[idx]) return;
+  const updateThumContPosition = () => {
+    if (thumCont) {
+      thumCont.style.position = "sticky";
+      thumCont.style.top = window.innerWidth <= 768 ? "65px" : "12%";
+      thumCont.style.height = window.innerWidth <= 768 ? "60%" : "80%";
+      thumCont.style.overflow = "hidden";
+    }
+  };
+  updateThumContPosition();
 
-    const mask = thumItems[idx].querySelector(".his-img-mask");
-    const bullet = thumItems[idx].querySelector(".bullet");
-    if (!mask) return;
-
-    mask.style.opacity = "0";
-    mask.style.transition = "opacity 0.4s ease";
-
-    const swiper = new Swiper(mask, {
-      loop: true,
-      slidesPerView: 1,
-      speed: 600,
-      autoplay: { delay: 2500, disableOnInteraction: false },
-      pagination: { el: bullet, clickable: true },
-      effect: "fade",
-      fadeEffect: { crossFade: true },
-      preloadImages: true,
-      lazy: false,
-      observer: true,
-      observeParents: true,
-      on: {
-        init() {
-          requestAnimationFrame(() => {
-            mask.style.opacity = "1";
-          });
-        },
-        imagesReady() {
-          swiper.update();
-        },
-      },
-    });
-
-    historySwipers[idx] = swiper;
-  }
-
-  function activateSwiper(index) {
-    historySwipers.forEach((sw, i) => {
-      if (!sw) return;
-      if (i === index) {
-        sw.update();
-        sw.autoplay?.start();
-      } else {
-        sw.autoplay?.stop();
-      }
-    });
-  }
+  window.addEventListener("resize", () => {
+    updateThumContPosition();
+  });
 
   function restartCountAnimation() {
     document.querySelectorAll(".count-num").forEach((count) => {
@@ -344,75 +397,126 @@ function historyPage() {
     });
   }
 
+  function initSwiper(idx) {
+    if (historySwipers[idx]) return;
+    const mask = thumItems[idx].querySelector(".his-img-mask");
+    const bullet = thumItems[idx].querySelector(".bullet");
+    if (!mask) return;
+    const swiper = new Swiper(mask, {
+      loop: true,
+      slidesPerView: 1,
+      speed: 600,
+      autoplay: { delay: 2500, disableOnInteraction: false },
+      pagination: { el: bullet, clickable: true },
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      observer: true,
+      observeParents: true,
+    });
+    historySwipers[idx] = swiper;
+  }
+
   function activateIndex(idx) {
+    if (idx === lastIndex) return;
+    lastIndex = idx;
+
     tabs.forEach((t) => t.classList.remove("active"));
-    thumItems.forEach((thum) => thum.classList.remove("act"));
+    thumItems.forEach((th) => th.classList.remove("act"));
+
     tabs[idx]?.classList.add("active");
     thumItems[idx]?.classList.add("act");
 
     initSwiper(idx);
-    activateSwiper(idx);
-    restartCountAnimation();
-  }
-
-  if (thumCont) {
-    Object.assign(thumCont.style, {
-      position: "sticky",
-      top: "180px",
-      height: "800px",
-      overflow: "hidden",
+    historySwipers.forEach((sw, i) => {
+      if (!sw) return;
+      if (i === idx) {
+        sw.update();
+        sw.autoplay?.start();
+      } else {
+        sw.autoplay?.stop();
+      }
     });
+    restartCountAnimation();
   }
 
   tabs.forEach((tab, i) => {
     tab.addEventListener("click", (e) => {
       e.preventDefault();
       isScrollingByClick = true;
-
       activateIndex(i);
 
       const target = historyItems[i];
       if (target) {
-        const offset = 120;
+        let offset;
+
+        if (window.innerWidth <= 768 && thumCont) {
+          const thumRect = thumCont.getBoundingClientRect();
+          offset = thumRect.bottom + 10;
+        } else {
+          offset = 100;
+        }
+
         const y = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
 
+      const clear = () => {
+        isScrollingByClick = false;
+        window.removeEventListener("scrollend", clear);
+      };
+      window.addEventListener("scrollend", clear, { once: true });
       setTimeout(() => (isScrollingByClick = false), 1200);
     });
   });
 
-  // 스크롤 감지
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (isScrollingByClick) return;
+  window.addEventListener("scroll", () => {
+    if (isScrollingByClick) return;
 
-      let visible = entries
-        .filter((e) => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    let currentIndex = 0;
 
-      if (visible) {
-        const idx = Array.from(historyItems).indexOf(visible.target);
-        activateIndex(idx);
-      }
-    },
-    {
-      rootMargin: "0px 0px -50% 0px",
-      threshold: [0.25, 0.5, 0.75],
+    if (window.innerWidth <= 768) {
+      const thumRect = thumCont?.getBoundingClientRect();
+      if (!thumRect) return;
+      const triggerY = thumRect.bottom + 10;
+      historyItems.forEach((item, i) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top <= triggerY) currentIndex = i;
+      });
+    } else {
+      historyItems.forEach((item, i) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top <= 0) currentIndex = i;
+      });
     }
-  );
 
-  historyItems.forEach((item) => observer.observe(item));
+    activateIndex(currentIndex);
+  });
 
   window.addEventListener("load", () => {
-    const visible = Array.from(historyItems).find((item) => {
+    let currentIndex = 0;
+    historyItems.forEach((item, i) => {
       const rect = item.getBoundingClientRect();
-      return rect.top < window.innerHeight * 0.6 && rect.bottom > 0;
+      if (rect.top <= window.innerHeight * 0.5) currentIndex = i;
     });
+    activateIndex(currentIndex);
+  });
+}
 
-    const idx = visible ? Array.from(historyItems).indexOf(visible) : 0;
+// 히스토리 메뉴 스티키 추가
+function historyMenuSticky() {
+  const menu = document.querySelector(".his-menu");
+  const header = document.querySelector(".header");
+  if (!menu || !header) return;
 
-    activateIndex(idx);
+  window.addEventListener("scroll", () => {
+    const rect = menu.getBoundingClientRect();
+    const isSticky = rect.top <= 0;
+
+    menu.classList.toggle("sticky", isSticky);
+
+    if (isSticky) {
+      header.classList.add("header--hidden");
+    }
   });
 }
 
@@ -454,6 +558,8 @@ function capacityTabs() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  headerScrollControl();
+  allMenuToggle();
   mainSwiper();
   mainTitle();
   businessScroll();
@@ -463,6 +569,7 @@ window.addEventListener("DOMContentLoaded", () => {
   autoHeaderHeight();
   scrollTop();
   historyPage();
+  historyMenuSticky();
   componentMachiningTabs();
   capacityTabs();
 });

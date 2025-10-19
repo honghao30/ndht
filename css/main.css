@@ -349,8 +349,21 @@
   }
 }
 @media all and (max-width: 768px) {
+  .main-business .txt-box .tit {
+    font-size: 24px;
+  }
 }
 @media all and (max-width: 640px) {
+  .main-business .txt-box .tit {
+    font-size: 18px;
+  }
+  .main-business .txt-box .btn-txt {
+    font-size: 14px;
+  }
+  .main-business .txt-box .btn-txt::after {
+    width: 25px;
+    height: 25px;
+  }
 }
 /* ==========================================================================
 	main-intro
@@ -575,8 +588,14 @@
   .main-contact .contact-box .location img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
+  }
+  .main-contact .txt-box {
+    width: 100%;
+  }
+  .main-contact .contact-box {
+    margin-top: 0;
+    align-items: stretch;
   }
 }
 @media all and (max-width: 960px) {
@@ -584,18 +603,43 @@
     margin-top: 0;
     padding: 6% 6% 10%;
   }
-  .main-contact .txt-box {
-    width: 100%;
+  .main-contact .catalog .catalog-txt {
+    right: 36px;
   }
-  .main-contact .contact-box {
-    margin-top: 0;
+  .main-contact .catalog .catalog-txt .txt {
+    font-size: 36px;
   }
 }
 @media all and (max-width: 768px) {
+  .main-contact .catalog .catalog-txt {
+    right: 5%;
+  }
+  .main-contact .catalog .catalog-txt .txt {
+    font-size: 30px;
+  }
 }
 @media all and (max-width: 640px) {
   .main-contact .txt-box {
     display: block;
+  }
+  .main-contact .contact-box {
+    display: block;
+  }
+  .main-contact .catalog .catalog-txt {
+    right: 5%;
+  }
+  .main-contact .catalog .catalog-txt .txt {
+    font-size: 30px;
+  }
+  .main-contact .contact-box .location {
+    margin-top: 20px;
+  }
+  .main-contact .contact-box .catalog {
+    margin-top: 10px;
+  }
+  .main-cont .imgbox img {
+    display: block;
+    height: auto;
   }
 }
 /* ==========================================================================

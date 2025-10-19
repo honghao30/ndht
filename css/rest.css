@@ -72,7 +72,7 @@ img {
 *,
 :after,
 :before {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 img,
 video {
