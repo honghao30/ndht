@@ -19,7 +19,6 @@
 }
 .header-inner {
   width: 100%;
-  padding: 0 5%;
   position: relative;
   transition: height 0.4s ease, background 0.4s ease;
   box-sizing: border-box;
@@ -36,12 +35,6 @@
 .header.header--hover h1 .off {
   display: none;
 }
-/* .header.header--hover .header-inner.no-hover h1 .on {
-  display: none;
-}
-.header.header--hover .header-inner.no-hover h1 .off {
-  display: block;
-} */
 .header-inner::after {
   display: block;
   content: "";

@@ -852,3 +852,181 @@
     width: 900px;
   }
 }
+/* ==========================================================================
+	from-the-ceo
+   ========================================================================== */
+.sub-visual.from-the-ceo {
+  background-image: url("../assets/images/sub/from_the_ceo_bg.png");
+}
+.from-the-ceo-inner {
+  padding: 103px 0 0;
+}
+.from-the-ceo-inner .sub-txt-box .tit {
+  font-size: 56px;
+  padding: 0 20%;
+  text-align: center;
+}
+.from-the-ceo-inner .sub-txt-box .tit::after {
+  display: none;
+}
+.from-the-ceo-inner .cont-box {
+  padding-top: 205px;
+  display: flex;
+  background: url("../assets/images/sub/from_the_ceo_cont_bg.png") center 12% /
+    66% no-repeat;
+}
+.from-the-ceo-inner .cont-txt-box {
+  flex: 1;
+  padding: 7% 9%;
+}
+.from-the-ceo-inner .cont-txt-box .cont-tit {
+  font-size: 40px;
+  font-weight: 700;
+}
+.from-the-ceo-inner .cont-txt-box .cont-desc {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 50px 0;
+}
+.from-the-ceo-inner .cont-img-box {
+  width: 48%;
+}
+@media all and (max-width: 1400px) {
+  .from-the-ceo-inner {
+    padding: 80px 0 0;
+  }
+  .from-the-ceo-inner .cont-box {
+    padding-top: 10%;
+    background-position: center 5%;
+  }
+  .from-the-ceo-inner .sub-txt-box .tit {
+    padding: 0 10%;
+    font-size: 50px;
+  }
+  .from-the-ceo-inner .cont-txt-box {
+    padding: 5% 7%;
+  }
+}
+@media all and (max-width: 960px) {
+  .from-the-ceo-inner .sub-txt-box .tit {
+    font-size: 46px;
+  }
+  .from-the-ceo-inner .cont-txt-box .cont-tit {
+    font-size: 32px;
+  }
+  .from-the-ceo-inner .cont-txt-box .cont-desc {
+    font-size: 18px;
+    margin: 40px 0;
+  }
+}
+@media all and (max-width: 768px) {
+  .from-the-ceo-inner .cont-box {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .from-the-ceo-inner .sub-txt-box .tit {
+    padding: 0 6%;
+    font-size: 40px;
+  }
+  .from-the-ceo-inner .cont-img-box {
+    width: 100%;
+    /* padding: 0 7%; */
+  }
+  .from-the-ceo-inner .cont-txt-box {
+    padding: 3% 5%;
+  }
+  .from-the-ceo-inner .cont-txt-box .cont-tit {
+    font-size: 28px;
+  }
+  .from-the-ceo-inner .cont-txt-box .cont-desc {
+    font-size: 16px;
+    margin: 30px 0;
+  }
+}
+@media all and (max-width: 640px) {
+  .from-the-ceo-inner {
+    padding: 40px 0 0;
+  }
+  .from-the-ceo-inner .sub-txt-box .tit {
+    font-size: 32px;
+  }
+  .from-the-ceo-inner .cont-txt-box .cont-tit {
+    font-size: 24px;
+  }
+  .from-the-ceo-inner .cont-txt-box .cont-desc {
+    font-size: 14px;
+    margin: 20px 0;
+  }
+}
+/* ==========================================================================
+	certifications
+   ========================================================================== */
+.sub-visual.certifications {
+  background-image: url("../assets/images/sub/certifications_bg.png");
+}
+.certifications-inner .sub-txt-box .tit::after {
+  width: 64%;
+}
+.certifications-inner .img-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 50px;
+}
+.certifications-inner .img-item {
+  width: calc((100% - 120px) / 4);
+  box-sizing: border-box;
+  text-align: center;
+}
+.certifications-inner .img-box {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+@media all and (max-width: 960px) {
+  .certifications-inner .sub-txt-box .tit::after {
+    width: 58%;
+  }
+  .certifications-inner .img-list {
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .certifications-inner .img-item {
+    width: calc((100% - 60px) / 3);
+  }
+  .certifications-inner .img-box {
+    padding: 14px;
+    border-radius: 14px;
+  }
+}
+@media all and (max-width: 768px) {
+  .certifications-inner {
+    padding: 40px 6% 0;
+  }
+  .certifications-inner .sub-txt-box .tit::after {
+    width: 50%;
+  }
+}
+@media all and (max-width: 640px) {
+  .certifications-inner .img-list {
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .certifications-inner .img-item {
+    width: calc((100% - 30px) / 2);
+  }
+  .certifications-inner .img-box {
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+}
+/* ==========================================================================
+	location
+   ========================================================================== */
+.sub-visual.location {
+  background-image: url("../assets/images/sub/location_bg.png");
+}
