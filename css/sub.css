@@ -737,6 +737,7 @@
   text-align: center;
   border-top: 2px solid #242526;
   border-bottom: 1px solid #242526;
+  overflow-x: scroll;
 }
 .capacity-table th {
   background: #f8f8f8;
@@ -797,6 +798,10 @@
 .capacity-table tbody tr:last-child {
   border-bottom: none;
 }
+.capacity-inner .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
 .capacity-inner .table-wrap .capacity-tab-box ul {
   width: 100%;
   display: flex;
@@ -833,4 +838,17 @@
 .capacity-table tr > th[rowspan]:last-child,
 .capacity-table tr > td[rowspan]:last-child {
   border-left: 1px solid #d9d9d9;
+}
+@media all and (max-width: 768px) {
+  .capacity-inner .table-wrap .capacity-tab-box ul {
+    width: 900px;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .capacity-table {
+    width: 900px;
+  }
 }
