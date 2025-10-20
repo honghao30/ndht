@@ -86,6 +86,8 @@
 }
 .sub-inner {
   width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
   padding: 115px 10.15% 0;
 }
 .sub-txt-box .tit {
@@ -161,7 +163,7 @@
   width: 100%;
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 9;
   background: #fff;
   border-radius: 80px 80px 0 0;
 }
@@ -1029,4 +1031,90 @@
    ========================================================================== */
 .sub-visual.location {
   background-image: url("../assets/images/sub/location_bg.png");
+}
+.location-inner .cont-box {
+  display: flex;
+  gap: 45px;
+  margin-top: 114px;
+  align-items: flex-end;
+}
+.location-inner .info-box {
+  width: 50%;
+}
+.location-inner .info-box .info-tit {
+  color: #bc2c2d;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 2.6;
+}
+.location-inner .info-box .info-sub-tit {
+  color: #242526;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.8;
+  word-break: break-all;
+}
+.location-inner .info-box .info-list {
+  margin-top: 35px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.location-inner .info-box .info-item {
+  width: calc((100% - 20px) / 3);
+  border-radius: 20px;
+  border: 1px solid #d9d9d9;
+  padding: 53px 23px;
+  box-sizing: border-box;
+}
+.location-inner .info-box .info-item .icon {
+  width: 28px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-bottom: 19px;
+}
+.location-inner .info-box .info-item.address .icon {
+  background-image: url("../assets/images/icon/ico_adress.svg");
+}
+.location-inner .info-box .info-item.tel .icon {
+  background-image: url("../assets/images/icon/ico_tel.svg");
+}
+.location-inner .info-box .info-item.fax .icon {
+  background-image: url("../assets/images/icon/ico_fax.svg");
+}
+.location-inner .info-box .info-item .info-txt {
+  color: #242526;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding-top: 11px;
+  border-top: 1px solid #d9d9d9;
+}
+.location-inner .map-box {
+  width: 50%;
+}
+@media all and (max-width: 1440px) {
+  .location-inner .info-box .info-list {
+    flex-direction: column;
+  }
+  .location-inner .info-box .info-item {
+    width: 100%;
+  }
+  .location-inner .cont-box {
+    margin-top: 50px;
+  }
+}
+@media all and (max-width: 960px) {
+  .location-inner .cont-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .location-inner .info-box {
+    width: 100%;
+  }
+  .location-inner .map-box {
+    width: 100%;
+  }
 }

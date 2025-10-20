@@ -218,6 +218,11 @@
 /* ==========================================================================
 	business
    ========================================================================== */
+.pin-spacer {
+  max-width: 1920px !important;
+  margin: 0 auto !important;
+}
+
 .main-business {
   position: relative;
   display: flex;
@@ -376,6 +381,8 @@
   transform: none;
 }
 .main-intro .overlay {
+  max-width: 1920px;
+  margin: 0 auto;
   text-align-last: left;
   padding-left: 192px;
 }
@@ -389,7 +396,7 @@
 }
 .main-intro .btn-area {
   padding: 165px 10% 0;
-  max-width: 1530px;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -543,7 +550,8 @@
    ========================================================================== */
 .main-contact {
   padding: 0 10% 120px;
-  margin-top: 173px;
+  margin: 173px auto 0;
+  max-width: 1920px;
 }
 .main-contact .txt-box {
   display: flex;
