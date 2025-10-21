@@ -700,3 +700,14 @@
 .w100p {
   width: 100% !important;
 }
+.circle-list li {
+  padding-left: 20px;
+  position: relative;
+}
+.circle-list li::before {
+  position: absolute;
+  content: "•";
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}

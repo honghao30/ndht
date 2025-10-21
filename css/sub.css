@@ -547,6 +547,9 @@
 .component-machining-tab-box li.active .component-machining-tab {
   color: #bc2c2d;
 }
+.component-machining-inner {
+  padding: 117px 10% 0;
+}
 .component-machining-inner .tab-cont {
   display: none;
   opacity: 0;
@@ -559,10 +562,9 @@
   transform: translateY(0);
 }
 .component-machining-inner .tab-inner {
-  padding: 117px 10% 0;
   text-align: center;
 }
-.component-machining-inner .tab-inner .txt-box {
+.business-sub-inner .tab-inner .txt-box {
   width: 100%;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
@@ -571,12 +573,12 @@
   color: #242526;
   text-align: left;
 }
-.component-machining-inner .tab-inner .txt-box .tab-title {
+.business-sub-inner .tab-inner .txt-box .tab-title {
   font-size: 40px;
   font-weight: 700;
   width: 34%;
 }
-.component-machining-inner .tab-inner .txt-box .tab-desc {
+.business-sub-inner .tab-inner .txt-box .tab-desc {
   flex: 1;
   font-size: 18px;
   font-weight: 400;
@@ -585,7 +587,7 @@
   box-sizing: border-box;
   position: relative;
 }
-.component-machining-inner .tab-inner .txt-box .tab-desc::before {
+.business-sub-inner .tab-inner .txt-box .tab-desc::before {
   display: block;
   content: "";
   width: 1px;
@@ -618,10 +620,10 @@
 @media all and (max-width: 1400px) {
 }
 @media all and (max-width: 960px) {
-  .component-machining-inner .tab-inner .txt-box .tab-title {
+  .business-sub-inner .tab-inner .txt-box .tab-title {
     font-size: 32px;
   }
-  .component-machining-inner .tab-inner .txt-box .tab-desc {
+  .business-sub-inner .tab-inner .txt-box .tab-desc {
     padding: 48px 32px;
   }
   .component-machining-inner .tab-img-wrap .img-list {
@@ -649,9 +651,6 @@
     min-width: max-content;
     padding: 0;
   }
-  .component-machining-inner .tab-inner {
-    padding: 40px 6% 0;
-  }
   .component-machining-inner .tab-img-wrap .img-list .img-item {
     font-size: 20px;
   }
@@ -660,18 +659,18 @@
   }
 }
 @media all and (max-width: 640px) {
-  .component-machining-inner .tab-inner .txt-box {
+  .business-sub-inner .tab-inner .txt-box {
     display: block;
   }
-  .component-machining-inner .tab-inner .txt-box .tab-title {
+  .business-sub-inner .tab-inner .txt-box .tab-title {
     width: 100%;
     font-size: 28px;
     padding: 24px 24px 0;
   }
-  .component-machining-inner .tab-inner .txt-box .tab-desc {
+  .business-sub-inner .tab-inner .txt-box .tab-desc {
     padding: 40px 24px;
   }
-  .component-machining-inner .tab-inner .txt-box .tab-desc::before {
+  .business-sub-inner .tab-inner .txt-box .tab-desc::before {
     display: none;
   }
   .component-machining-inner .tab-img-wrap {
@@ -1116,5 +1115,208 @@
   }
   .location-inner .map-box {
     width: 100%;
+  }
+}
+/* ==========================================================================
+	ci
+   ========================================================================== */
+.sub-visual.ci {
+  background-image: url("../assets/images/sub/ci_bg.png");
+}
+.download-btn {
+  margin-top: 0;
+}
+.download-btn span::after {
+  background-image: url(../assets/images/icon/ico_download.svg);
+}
+.download-btn:hover span::after {
+  background-image: url(../assets/images/icon/ico_download_on.svg);
+}
+.ci-inner .info-box {
+  display: flex;
+  align-items: center;
+  color: #242526;
+  gap: 9%;
+  margin-bottom: 38px;
+}
+.ci-inner .info-box .info-tit {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 2.6;
+}
+.ci-inner .info-box .info-txt {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.ci-inner .btn-box {
+  display: flex;
+  gap: 34px;
+}
+.ci-inner .img-box img + img {
+  margin-top: 30px;
+}
+.ci-inner .ci-box + .ci-box {
+  margin-top: 156px;
+}
+.ci-inner .ci-box + .ci-box .tit::after {
+  width: 80%;
+}
+.ci-inner .color-box {
+  margin-top: 45px;
+  display: flex;
+  gap: 50px;
+}
+.ci-inner .color-item {
+  position: relative;
+  width: 50%;
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px 50px;
+  height: 326px;
+}
+.ci-inner .color-item .hex {
+  font-size: 28px;
+  font-weight: 800;
+}
+.ci-inner .bottom-txt {
+  position: absolute;
+  right: 40px;
+  bottom: 50px;
+}
+.ci-inner .color-tit {
+  font-size: 22px;
+  font-weight: 800;
+}
+.ci-inner .color-txt {
+  font-weight: 400;
+}
+.ci-inner .color-item:first-child {
+  background-color: #d63234;
+}
+.ci-inner .color-item:nth-child(2) {
+  background-color: #292f57;
+}
+@media all and (max-width: 1440px) {
+  .ci-inner .info-box {
+    display: block;
+  }
+  .ci-inner .btn-box {
+    margin-top: 20px;
+  }
+  .ci-inner .ci-box + .ci-box .tit::after {
+    width: 60%;
+  }
+}
+@media all and (max-width: 960px) {
+  .ci-inner .info-box .info-tit {
+    font-size: 22px;
+  }
+  .ci-inner .info-box .info-txt {
+    font-size: 20px;
+  }
+  .ci-inner .ci-box + .ci-box {
+    margin-top: 106px;
+  }
+  .ci-inner .color-item {
+    padding: 30px 40px;
+    height: 306px;
+  }
+  .ci-inner .color-box {
+    gap: 30px;
+  }
+  .ci-inner .bottom-txt {
+    right: 30px;
+    bottom: 40px;
+  }
+  .ci-inner .color-item .hex {
+    font-size: 24px;
+  }
+  .ci-inner .color-tit {
+    font-size: 18px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .ci-inner {
+    padding: 40px 6% 0;
+  }
+  .ci-inner .ci-box + .ci-box {
+    margin-top: 80px;
+  }
+  .ci-inner .ci-box + .ci-box .tit::after {
+    width: 50%;
+  }
+  .ci-inner .color-box {
+    gap: 20px;
+  }
+}
+
+@media all and (max-width: 640px) {
+  .ci-inner .info-box .info-tit {
+    font-size: 20px;
+  }
+  .ci-inner .info-box .info-txt {
+    font-size: 18px;
+  }
+  .ci-inner .btn-box {
+    display: block;
+  }
+  .ci-inner .btn-box .download-btn + .download-btn {
+    margin-top: 20px;
+  }
+  .ci-inner .ci-box + .ci-box {
+    margin-top: 60px;
+  }
+  .ci-inner .color-item {
+    padding: 15px 20px;
+    height: 266px;
+  }
+  .ci-inner .color-box {
+    flex-direction: column;
+  }
+  .ci-inner .bottom-txt {
+    right: 20px;
+    bottom: 15px;
+  }
+  .ci-inner .color-item {
+    width: 100%;
+  }
+  .ci-inner .color-item .hex {
+    font-size: 20px;
+  }
+  .ci-inner .color-tit {
+    font-size: 14px;
+  }
+}
+/* ==========================================================================
+	renewable-energy
+   ========================================================================== */
+.sub-visual.renewable-energy {
+  background-image: url("../assets/images/sub/renewable_energy_bg.png");
+}
+.business-sub-area .cont-box {
+  margin: 117px auto 138px;
+}
+.business-sub-area .table-box {
+  margin: 62px 0 58px 0;
+  overflow-x: auto;
+}
+@media all and (max-width: 960px) {
+  .business-sub-area .cont-box {
+    margin: 87px auto 108px;
+  }
+  .business-sub-area .table-box {
+    margin: 42px 0 38px 0;
+  }
+}
+@media all and (max-width: 768px) {
+  .business-sub-inner {
+    padding: 40px 6% 0;
+  }
+}
+@media all and (max-width: 640px) {
+  .business-sub-area .cont-box {
+    margin: 56px auto 68px;
   }
 }
