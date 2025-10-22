@@ -566,7 +566,7 @@
 .main-contact .contact-box {
   display: flex;
   gap: 20px;
-  align-items: baseline;
+  align-items: end;
   margin-top: -77px;
 }
 .main-contact .catalog {
