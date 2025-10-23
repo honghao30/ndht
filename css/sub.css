@@ -577,6 +577,8 @@
   font-size: 40px;
   font-weight: 700;
   width: 34%;
+  padding-right: 10px;
+  word-break: keep-all;
 }
 .business-sub-inner .tab-inner .txt-box .tab-desc {
   flex: 1;
@@ -1328,8 +1330,10 @@
 }
 .business-sub-inner .cont-box .item-list {
   display: flex;
-  gap: 20px;
+  gap: 54px 20px;
   align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .business-sub-inner .cont-box .item-list .item {
   padding: 35px;
@@ -1337,6 +1341,7 @@
   background: #eee;
   display: flex;
   flex-direction: column;
+  width: calc((100% - 20px) / 2);
 }
 .business-sub-inner .cont-box .item-list .info-box {
   border-radius: 20px;
@@ -1378,6 +1383,10 @@
 @media all and (max-width: 768px) {
   .business-sub-inner .cont-box .item-list {
     flex-direction: column;
+    gap: 27px 20px;
+  }
+  .business-sub-inner .cont-box .item-list .item {
+    width: 100%;
   }
 }
 /* ==========================================================================
@@ -1399,4 +1408,10 @@
    ========================================================================== */
 .sub-visual.power-tools {
   background-image: url("../assets/images/sub/power_tools_bg.png");
+}
+/* ==========================================================================
+	measuring-equipment
+   ========================================================================== */
+.sub-visual.measuring-equipment {
+  background-image: url("../assets/images/sub/measuring_equipment_bg.png");
 }

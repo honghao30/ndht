@@ -25,8 +25,13 @@
   transition: height 0.4s ease, background 0.4s ease;
   box-sizing: border-box;
 }
+.header.active .header-inner {
+  opacity: 0.8;
+  background: #132f5c;
+}
 .header.header--hover .header-inner {
   background: #fff;
+  opacity: 1;
 }
 .header h1 .on {
   display: none;
